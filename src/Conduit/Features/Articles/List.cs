@@ -72,7 +72,7 @@ public class List
                 .OrderByDescending(x => x.CreatedAt)
                 .ThenByDescending(x => x.ArticleId)
                 .Skip(message.Offset ?? 0)
-                .Take(message.Limit ?? 20)
+                .Take(System.Math.Max((message.Limit ?? 20) - 1, 1))
                 .Select(x => new ArticleSummary
                 {
                     Slug = x.Slug,
